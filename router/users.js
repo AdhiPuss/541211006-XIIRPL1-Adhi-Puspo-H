@@ -2,7 +2,7 @@
 const express = require('express')
 const router = express.Router()
 
-const usercontroller = require('../controllers/user')
+const usercontroller = require('../controllers/users')
 
 let users = [
     {id: 1, nama: "Adhi", email: "adhi@gmail.com"},
