@@ -23,16 +23,21 @@ module.exports = {
             res.status(400).json({success: false})
         }
         },
-      store: (req, res) => {
-        users.push(req.body)
-        res.json({
-            status: true,
-            data: users,
-            method: req.method,
-            url: req.url,
-            message: "Data berhasil ditambahkan"
-        })
-       },
+        store: async (req, res) => {
+            try {
+              const user = await User.create(req.body)
+              // res.json(users)
+              res.status(200).json({
+                status: true,
+                data: user,
+                method: req.method,
+                url: req.url,
+                message: "Data berhasil ditambahkan"
+              })
+            } catch (error) {
+                res.status(400).json({success: false})
+            }
+    },
        update: (req, res) => {
         const id = req.params.id
         users.filter(user => {
